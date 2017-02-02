@@ -1,8 +1,12 @@
 FROM ubuntu:16.04
 RUN apt-get update
 RUN apt-get -y install ca-certificates curl libunwind8 unzip wget libcurl4-openssl-dev
-RUN wget https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-alpha.11/powershell_6.0.0-alpha.11-1ubuntu1.14.04.1_amd64.deb
-RUN dpkg -i powershell_6.0.0-alpha.11-1ubuntu1.14.04.1_amd64.deb
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list
+RUN apt-get update
+RUN apt-get -y install powershell
+
 RUN apt-get -y install -f
 RUN mkdir -p ~/.local/share/powershell/Modules
 RUN wget https://download3.vmware.com/software/vmw-tools/powerclicore/PowerCLI_Core.zip
