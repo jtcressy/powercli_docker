@@ -17,4 +17,4 @@ ENV WEB_SHELL=bash
 RUN export PATH=$PATH:/scripts
 EXPOSE 8088
 
-CMD ["/usr/bin/web-terminal --port 8088 &"]
+CMD ["/usr/bin/web-terminal", "--port", "8088", "&"]
