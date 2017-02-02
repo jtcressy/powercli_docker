@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 RUN apt-get update
-RUN apt-get -y install ca-certificates curl libunwind8 unzip wget libcurl4-openssl-dev
+RUN apt-get -y install apt-transport-https ca-certificates curl libunwind8 unzip wget libcurl4-openssl-dev
 
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list
