@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 RUN apt-get update
-RUN apt-get -y install ca-certificates curl libunwind8 libicu52 unzip wget libcurl4-openssl-dev curl wget
+RUN apt-get -y install ca-certificates curl libunwind8 unzip wget libcurl4-openssl-dev
 RUN wget https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-alpha.11/powershell_6.0.0-alpha.11-1ubuntu1.14.04.1_amd64.deb
 RUN dpkg -i powershell_6.0.0-alpha.11-1ubuntu1.14.04.1_amd64.deb
 RUN apt-get -y install -f
