@@ -19,7 +19,7 @@ RUN npm install web-terminal -g
 # scripts folder to hold powershell scripts 
 ADD ./scripts /scripts
 # Cleanup
-RUN rm -r /temp/PowerCLI*
+RUN rm -r /tmp/PowerCLI*
 RUN apt-get clean
 # configurable env var to change default shell on web interface
 ENV WEB_SHELL=bash 
