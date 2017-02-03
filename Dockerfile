@@ -4,7 +4,6 @@ RUN apt-get update && \
     apt-get -y install apt-transport-https curl
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN curl -fsSL https://yum.dockerproject.org/gpg | sudo apt-key add -
 RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list
 RUN apt-get update
 # install dependencies
