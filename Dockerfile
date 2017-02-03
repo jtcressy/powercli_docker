@@ -22,6 +22,6 @@ RUN apt-get clean
 RUN export PATH=$PATH:/projects/scripts
 VOLUME /projects
 WORKDIR /projects
-ENTRYPOINT ["/usr/bin/bash"]
+ENTRYPOINT ["/bin/bash"]
 EXPOSE 8088
 CMD tail -f /dev/null
