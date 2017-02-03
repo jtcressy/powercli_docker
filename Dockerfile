@@ -11,7 +11,7 @@ RUN apt-get -y install ca-certificates libunwind8 unzip wget libcurl4-openssl-de
 RUN apt-get -y install -f
 # CD to temp directory, download & install PowerCLI modules
 RUN mkdir -p ~/.local/share/powershell/Modules && \
-    cd /temp && wget https://download3.vmware.com/software/vmw-tools/powerclicore/PowerCLI_Core.zip && \
+    cd /tmp && wget https://download3.vmware.com/software/vmw-tools/powerclicore/PowerCLI_Core.zip && \
     unzip PowerCLI_Core.zip && unzip 'PowerCLI.*.zip' -d ~/.local/share/powershell/Modules
 
 # install web-terminal and nodejs
