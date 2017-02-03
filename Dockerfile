@@ -8,22 +8,21 @@ RUN curl -fsSL https://yum.dockerproject.org/gpg | sudo apt-key add -
 RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list
 RUN apt-get update
 # install dependencies
-RUN apt-get -y install ca-certificates libunwind8 unzip wget libcurl4-openssl-dev htop vim nano nodejs powershell docker.io
+RUN apt-get -y install ca-certificates libunwind8 unzip wget libcurl4-openssl-dev htop vim nano powershell docker.io g++ gcc make gdb gdbserver
 RUN apt-get -y install -f
 # CD to temp directory, download & install PowerCLI modules
 RUN mkdir -p ~/.local/share/powershell/Modules && \
     cd /tmp && wget https://download3.vmware.com/software/vmw-tools/powerclicore/PowerCLI_Core.zip && \
     unzip PowerCLI_Core.zip && unzip 'PowerCLI.*.zip' -d ~/.local/share/powershell/Modules
 
-# install web-terminal and nodejs
-RUN npm install web-terminal -g
 # scripts folder to hold powershell scripts 
-ADD ./scripts /scripts
+ADD ./scripts /projects/scripts
 # Cleanup
 RUN rm -r /tmp/PowerCLI*
 RUN apt-get clean
-# configurable env var to change default shell on web interface
-ENV WEB_SHELL=bash
-RUN export PATH=$PATH:/scripts
+RUN export PATH=$PATH:/projects/scripts
+VOLUME /projects
+WORKDIR /projects
+ENTRYPOINT ["/usr/bin/bash"]
 EXPOSE 8088
-CMD ["/usr/bin/web-terminal", "--port", "8088", "&"]
+CMD tail -f /dev/null
