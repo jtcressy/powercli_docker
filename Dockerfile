@@ -9,14 +9,18 @@ RUN apt-get update
 # install dependencies
 RUN apt-get -y install ca-certificates libunwind8 unzip wget libcurl4-openssl-dev htop vim nano nodejs powershell
 RUN apt-get -y install -f
-# install PowerCLI modules
+# CD to temp directory, download & install PowerCLI modules
 RUN mkdir -p ~/.local/share/powershell/Modules
 RUN cd /temp && wget https://download3.vmware.com/software/vmw-tools/powerclicore/PowerCLI_Core.zip
 RUN unzip PowerCLI_Core.zip && unzip 'PowerCLI.*.zip' -d ~/.local/share/powershell/Modules
+
 # install web-terminal and nodejs
 RUN npm install web-terminal -g
 # scripts folder to hold powershell scripts 
 ADD ./scripts /scripts
+# Cleanup
+RUN rm -r /temp/PowerCLI*
+RUN apt-get clean
 # configurable env var to change default shell on web interface
 ENV WEB_SHELL=bash 
 RUN export PATH=$PATH:/scripts
