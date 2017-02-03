@@ -23,8 +23,7 @@ ADD ./scripts /scripts
 RUN rm -r /tmp/PowerCLI*
 RUN apt-get clean
 # configurable env var to change default shell on web interface
-ENV WEB_SHELL=bash 
-ENV DOCKER_OPTS
+ENV WEB_SHELL=bash
 RUN export PATH=$PATH:/scripts
 EXPOSE 8088
 CMD ["/usr/bin/web-terminal", "--port", "8088", "&"]
