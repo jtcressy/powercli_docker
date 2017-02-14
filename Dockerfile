@@ -7,9 +7,9 @@ RUN apt-get update && \
 RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
     && apt-get update \
-    && apt-get install powershell \
+    && apt-get install powershell -y \
     && apt-get clean
-    
+
 ### Install .NET Core
 RUN apt-get update \
     && apt-get install apt-transport-https curl -y \
