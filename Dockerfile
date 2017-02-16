@@ -52,29 +52,22 @@ RUN mv /powershell/PowervRA ~/.local/share/powershell/Modules/
 RUN rm -f /powershell/PowervRA
 
 RUN apt-get update \
-    && apt-get -y install apt-transport-https curl \
     && apt-get -y install ca-certificates \
         libunwind8 \
         unzip \
         wget \
-        libcurl4-openssl-dev \
         htop \
         vim \
         nano \
-        docker.io \
-        g++ \
-        gcc \
         make \
-        gdb \
-        gdbserver \
-    && apt-get -y install -f \
-    && apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+#Allow connections to servers with non-verified CA certificates
+RUN powershell Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:\$false
 
 # scripts folder to hold powershell scripts 
 WORKDIR /projects
 ADD ./scripts /projects/scripts
 RUN export PATH=$PATH:/projects/scripts
 VOLUME /projects
-CMD ["/bin/bash"]
+CMD ["powershell"]
